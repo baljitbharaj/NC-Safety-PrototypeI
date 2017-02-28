@@ -1,0 +1,81 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+}
+
+body {
+}
+
+.logo {
+    width: 90%;
+}
+
+#loginForm h1 {
+    font-size: 75px;
+}
+
+fieldset {
+    border: 3px solid rgb(0, 115, 207);
+    width:100%;
+    padding: 20px;
+}
+
+legend {
+    color: black;
+    width: auto; /* Or auto */
+    padding: 10px;  /* To give a bit of padding on the left and right */
+    border-bottom: none;
+    margin-left: 10px;
+    font-family: Calibri, sans-serif;
+    font-size: 35px;
+}
+
+a {
+    text-decoration: none;
+}
+
+input, select, textarea {
+    max-width: 100%;
+}
+
+#btnLogin{
+    width: 98%;
+}
+
+.txtLogin {
+    width:100%;
+}
+.ncBtn {
+    background: rgb(0, 115, 207);
+    color: #FFF;
+}
+
+.icon {
+    padding: 20px;
+}
+
+#calendar {
+    padding-top: 50px;
+}
+
+h1, h2 {
+    color: #0073CF;
+}
+
+.ui-accordion-header.ui-corner-top.ui-state-default.ui-accordion-header-active.ui-state-active.ui-accordion-icons {
+    background: #0073CF;
+}
+
+@media (max-width: 768px) {
+    .tablet {
+        display:block !important;
+    }
+}    
+@media (min-width: 769px) {
+    .tablet {
+        display:none !important;
+    }
+}    

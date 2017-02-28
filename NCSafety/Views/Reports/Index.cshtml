@@ -1,0 +1,124 @@
+﻿@model IEnumerable<NCSafety.Models.Item>
+
+@{
+    ViewBag.Title = "Reports";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Accordion - Default functionality</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $( function() {
+        $( "#accordion" ).accordion();
+      } );
+    </script>
+</head>
+<body>
+
+    <br />
+    <h2>Reports</h2>
+    <br />
+    <h3>Search by...</h3>
+    <br/>
+    <h4>School Name:</h4>
+    <form asp-controller="Inspections" asp-action="Index" method="get">
+        <p>
+            <input type="text" name="SearchString" class="form-control" placeholder="Search...">
+        </p>
+    </form>
+    <br/>
+    <h4>Lab:</h4>
+    <form asp-controller="Inspections" asp-action="Index" method="get">
+        <p>
+            <input type="text" name="SearchString" class="form-control" placeholder="Search...">
+        </p>
+    </form>
+    <br/>
+    <h4>Inspector:</h4>
+    <form asp-controller="Inspections" asp-action="Index" method="get">
+        <p>
+            <input type="text" name="SearchString" class="form-control" placeholder="Search...">
+        </p>
+    </form>
+
+    <div id="accordion">
+        <h3>Lab TC12</h3>
+        <div>
+            <h4>Inspected on: January 30th, 2017 </h4>
+            <p>
+                Inspection: Completed<br />
+                Inspector: Joe Staff
+                <br /><br /><br />
+                Corrective Actions: None
+            </p>
+        </div>
+        <h3>Lab V11a</h3>
+        <div>
+            <h4>Inspected on: January 16th, 2017 </h4>
+            <p>
+                Inspection: Completed<br />
+                Corrective Actions: Completed<br />
+                Inspector: Joe Staff
+                <br /><br /><br />
+                Corrective Actions: <br />
+                <ul>
+                    <li>Frayed cords</li>
+                    <li>First Aid kit missing</li>
+                </ul>
+            </p>
+        </div>
+        <h3>Lab TC77</h3>
+        <div>
+            <h4>Inspected on: January 16th, 2017 </h4>
+            <p>
+                Inspection: Completed<br />
+                Corrective Actions: Completed<br />
+                Inspector: Joe Staff
+                <br /><br /><br />
+                Corrective Actions: <br />
+                <ul>
+                    <li>Pinch Points between workstations</li>
+                    <li>Gaurding</li>
+                    <li>PPE missing</li>
+                </ul>
+            </p>
+        </div>
+        <h3>Lab S333</h3>
+        <div>
+            <h4>Inspected on: January 2nd, 2017 </h4>
+            <p>
+                Inspection: Completed<br />
+                Corrective Actions: Completed<br />
+                Inspector: Joe Staff
+                <br /><br /><br />
+                Corrective Actions: <br />
+                <ul>
+                    <li>Possible trips due to cords</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+

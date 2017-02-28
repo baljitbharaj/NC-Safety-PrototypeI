@@ -1,0 +1,179 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = "Confirm Inspection";
+    ViewBag.Edit = "";
+
+    @section Selectivity{
+        <link href="~/Content/selectivity-jquery.css" rel="stylesheet">
+        <script src="~/Scripts/selectivity-jquery.js"></script>}
+}
+<script>
+    function ToggleVisibility(id,commentVisible)
+    {
+        x = document.getElementById(id);
+        if (id == 'thComment')
+            commentVisible == true ? x.style.visibility = "visible" : x.style.visibility = "hidden";
+        else
+            x.style.visibility == "visible" ? x.style.visibility = "hidden" : x.style.visibility = "visible";
+    }
+    function ToggleComment(id)
+    {
+        commentVisible = false;
+        var ids = ["txt1", "txt2", "txt3", "txt4"];
+
+        ToggleVisibility(id, null);
+
+        //for(i=0;i<ids.length;i++)
+        //{
+        //    t = document.getElementById(ids[i]);
+        //    if (t.style.visibility == "visible")
+        //        commentVisible = true;
+        //}
+
+        //ToggleVisibility('thComment', commentVisible);
+
+        thComment.style.visibility == 'hidden' ? thComment.style.visibility = 'visible' : thComment.style.visibility = 'hidden';
+
+    }
+    // Toggle Disable
+    function ToggleDisable(id)
+    {
+        x = document.getElementById(id);
+        x.style.display == 'none' ? x.style.display = 'block' : x.style.display = 'none';
+    }
+    // Expand Hazard Area
+    function ExpandHazard(id) {
+        haz = document.getElementById(id);
+        if (haz.style.display == 'none') {
+            haz.style.display = 'block';
+            document.getElementById('expand1').value = "\u2228";
+        }
+        else {
+            haz.style.display = 'none';
+            document.getElementById('expand1').value = '\u276F';
+        }
+
+
+    }
+    function enterComment() {
+        var x = document.getElementById('txt1');
+        var name = prompt("Enter Comment:", "");
+        if (name != null) {
+            x.value = name;
+        }
+    }
+    // Drop Down List
+    $(function () {
+
+        $("#ddlEquipment li a").click(function () {
+
+            $('#btnEquipment').text($(this).text());
+            $('#btnEquipment').val($(this).text());
+            ExpandHazard('hazards');
+
+        });
+
+    });
+
+    $(function () {
+
+        $("#ddlHazards1 li a").click(function () {
+
+            $('#btnHazards1').text($(this).text());
+            $('#btnHazards1').val($(this).text());
+
+        });
+
+    });
+    $(function () {
+
+        $("#ddlHazards2 li a").click(function () {
+
+            $('#btnHazards2').text($(this).text());
+            $('#btnHazards2').val($(this).text());
+
+        });
+
+    });
+
+    //Add Row
+    function addRow() {
+
+        var table = document.getElementById("hazardTable");
+
+        var rowCount = table.rows.length;
+        var row = table.insertRow(rowCount);
+
+        row.insertCell(0).innerHTML = "<div><div id='ddlHazards2' class='dropdown' style='display:inline-block'><button id='btnHazards2' class='btn btn-primary dropdown-toggle' type='button' data-toggle='dropdown' style='background-color:#ddd;color:black;border:none;font-size:medium'>Select a hazard...<span class='caret'></span></button><ul class='dropdown-menu'><li><a href='#'>Chemical storage</a></li><li><a href='#'>Electrical hazards; frayed cords, improper wiring or grounding</a></li><li><a href='#'>Exhaust of dust,fumes</a></li><li><a href='#'>Eyewash Station</a></li><li><a href='#'>First Aid Kit</a></li><li><a href='#'>Flammable storage</a></li><li><a href='#'>Guarding</a></li><li><a href='#'>Housekeeping - possible trips / slips / spills</a></li><li><a href='#'>Housekeeping - area neat and tidy</a></li><li><a href='#'>Lock out / tag out</a></li><li><a href='#'>MSDS Binder</a></li><li><a href='#'>Pinch points</a></li><li><a href='#'>Potential falls / ladder use</a></li><li><a href='#'>PPE</a></li><li><a href='#'>Proper storage / potential of falling objects</a></li><li><a href='#'>Safe Operating Procedures (SOP) in place</a></li><li><a href='#'>Other...</a></li></ul></div></div>";
+        row.insertCell(1).innerHTML = "<input type='checkbox' style='margin-left:30px'>";
+        row.insertCell(2).innerHTML = "<input type='checkbox' style='margin-left:30px;margin-right:35px' onclick='var x = document.getElementById('thCorrectiveAction1'); if (x.style.display == 'none') ToggleDisable('thCorrectiveAction2'); ToggleDisable('txtCorrectiveAction2');' />";
+        row.insertCell(3).innerHTML = "<input id='txtCorrectiveAction2' type='text' class='form-control' style='display:none' />";
+        row.insertCell(4).innerHTML = "<input type='button' class='form-control' value='&bull;&bull;&bull;' onclick='ToggleDisable('txtComment2');' style='margin-left:15px;width:auto;margin-right:15px' />";
+        row.insertCell(5).innerHTML = "<input id='txtComment2' type='text' class='form-control' style='display:none;margin-left:15px' />";
+
+        row = table.insertRow(rowCount + 1);
+
+        row.insertCell(0).innerHTML = "&nbsp;";
+
+    }
+</script>
+<br />
+<h2>Confirm Inspection</h2>
+<br />
+<div id="setup" style="padding:25px;background-color:#ddd;border-radius: 4px">
+    <div id="date">
+        <h3 style="margin-right:15px;display:inline-block">Date:</h3><p style="font-weight:bolder;font-size:larger;display:inline-block">February 10, 2017</p>
+    </div>
+    <div id="lab">
+        <h3 style="display:inline-block;margin-right:25px">Lab:</h3><p style="font-weight:bolder;font-size:larger;display:inline-block">TC14 (School of Trades)</p>
+    </div>
+</div>
+<br />
+<div>
+    <h3 style="display:inline-block;margin-right:15px">Equipment/Area:</h3>
+    <div id="ddlEquipment" class="dropdown" style="display:inline-block">
+        <button id="btnEquipment" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:#ddd;color:black;border:none;font-size:large">
+            Back Area
+            <span class="caret"></span>
+        </button>
+    </div>
+</div>
+<div id="chkHazards" style="border:1px solid #ddd;margin-top:30px;padding:0px 0px 30px 30px">
+    <h3><input id="expand1" type="button" value="&#x276F;" onclick="ExpandHazard('hazards')" class="btn ncBtn" style="margin-right:20px" />Hazards:</h3>
+    <div id="hazards" class="hazards" style="display:none;">
+        <table id="hazardTable">
+            <tr>
+                <th style="margin-right:15px"></th>
+                <th style="padding-left:20px">Good</th>
+                <th style="padding-left:20px">Fault</th>
+                <th id="thCorrectiveAction1" style="display:none">Corrective Action</th>
+                <th id="thCorrectiveAction2" style="display:none">Corrective Action</th>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <div id="ddlHazards1" class="dropdown" style="display:inline-block">
+                            <button id="btnHazards1" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:#ddd;color:black;border:none;font-size:medium">
+                                Eyewash Station
+                                <span class="caret"></span>
+                            </button>
+                        </div>
+                    </div>
+                </td>
+                <td><input type="checkbox" style="margin-left:30px" disabled="disabled"></td>
+                <td><input type="checkbox" checked="checked" disabled="disabled" style="margin-left:30px;margin-right:35px" onclick="var x = document.getElementById('thCorrectiveAction2');if(x.style.display=='none')ToggleDisable('thCorrectiveAction1'); ToggleDisable('txtCorrectiveAction1');" /></td>
+                <td>
+                    <input id="txtCorrectiveAction1" type="text" class="form-control" value="Clean area" readonly="readonly"/>
+                </td>
+                <td><input type="button" class="form-control" value="&bull;&bull;&bull;" onclick="ToggleDisable('txtComment1');" style="margin-left:15px;width:auto;margin-right:15px" /></td>
+                <td><input id="txtComment1" type="text" class="form-control" style="margin-left:15px" value="Food residue in sink" readonly="readonly"/></td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+        </table>
+    </div>
+</div>
+<br /><br />
+<input type="submit" class="btn ncBtn" value="Submit" onclick="alert('Inspection submitted.');window.location='/Home/Index'"/>
+<input type="button" class="btn ncBtn" value="Cancel" onclick="if(confirm('Are you sure you want to cancel? Your inspection will be saved to your Saved Drafts.'))window.location='/Home/Index'" />

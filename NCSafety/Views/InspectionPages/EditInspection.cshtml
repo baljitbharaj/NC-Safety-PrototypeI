@@ -1,0 +1,318 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = "New Inspection";
+    ViewBag.Edit = "";
+
+    @section Selectivity{
+        <link href="~/Content/selectivity-jquery.css" rel="stylesheet">
+        <script src="~/Scripts/selectivity-jquery.js"></script>}
+
+    @section Bootstrap3DatePicker{
+        <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+        <link rel="stylesheet" href="~/Content/bootstrap-datetimepicker.css" />}
+}
+<script>
+    // Toggle Disable
+    function ToggleDisable(id)
+    {
+        x = document.getElementById(id);
+        x.style.display == 'none' ? x.style.display = 'block' : x.style.display = 'none';
+    }
+    // Expand Hazard Area
+    function ExpandHazard(id) {
+        haz = document.getElementById(id);
+        if (haz.style.display == 'none') {
+            haz.style.display = 'block';
+            document.getElementById('expand1').value = "\u2228";
+        }
+        else {
+            haz.style.display = 'none';
+            document.getElementById('expand1').value = '\u276F';
+        }
+
+
+    }
+
+    // Drop Down List - Change selected
+
+    $(function () {
+
+        $("#ddlEquipment1 li a").click(function () {
+
+            $('#btnEquipment1').text($(this).text());
+            $('#btnEquipment1').val($(this).text());
+            var x = document.getElementById('hazards1');
+            var y = document.getElementById('txtTest');
+            if(x.style.display=='none')
+                ExpandHazard('hazards1');
+
+            if ($(this).text() == 'Other...')
+                y.style.display = 'inline-block';
+            else
+                y.style.display = 'none';
+
+        });
+
+    });
+    $(function () {
+
+        $("#ddlEquipment2 li a").click(function () {
+
+            $('#btnEquipment2').text($(this).text());
+            $('#btnEquipment2').val($(this).text());
+            var x = document.getElementById('hazards2');
+            if(x.style.display=='none')
+                ExpandHazard('hazards2');
+
+        });
+
+    });
+    $(function () {
+
+        $("#ddlEquipment3 li a").click(function () {
+
+            $('#btnEquipment3').text($(this).text());
+            $('#btnEquipment3').val($(this).text());
+            var x = document.getElementById('hazards3');
+            if (x.style.display == 'none')
+                ExpandHazard('hazards3');
+
+        });
+
+    });
+    $(function () {
+
+        $("#ddlHazards1 li a").click(function () {
+
+            $('#btnHazards1').text($(this).text());
+            $('#btnHazards1').val($(this).text());
+            if ($(this).text() == 'Other...')
+                $('#btnHazards1').text('Other Area');
+
+        });
+
+    });
+
+    $(function () {
+
+        $("#ddlHazardsX li a").click(function () {
+
+            $('#btnHazardsX').text($(this).text());
+            $('#btnHazardsX').val($(this).text());
+
+        });
+
+    });
+
+    //$('#hazardTable1').on('click', '#ddlHazardsX li a', function () {
+    //    var x = $('#hazardTable1').find("#btnHazardsX");
+    //    x.text($(this).text());
+    //    x.val($(this).text());
+    //});
+
+    //Add Row
+    function addRow(id) {
+
+        var table = document.getElementById(id);
+
+        var rowCount = table.rows.length;
+        var row = table.insertRow(rowCount);
+
+        row.insertCell(0).innerHTML = "<div><div id=\"ddlHazardsX\" class=\"dropdown\" style=\"display:inline-block\"><button id=\"btnHazardsX\" class=\"btn btn-primary dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" style=\"background-color:#ddd;color:black;border:none;font-size:medium\">Select a hazard...<span class=\"caret\"></span></button><ul class=\"dropdown-menu\"><li><a href=\"#\">Chemical storage</a></li><li><a href=\"#\">Electrical hazards; frayed cords, improper wiring or grounding</a></li><li><a href=\"#\">Exhaust of dust,fumes</a></li><li><a href=\"#\">Eyewash Station</a></li><li><a href=\"#\">First Aid Kit</a></li><li><a href=\"#\">Flammable storage</a></li><li><a href=\"#\">Guarding</a></li><li><a href=\"#\">Housekeeping - possible trips / slips / spills</a></li><li><a href=\"#\">Housekeeping - area neat and tidy</a></li><li><a href=\"#\">Lock out / tag out</a></li><li><a href=\"#\">MSDS Binder</a></li><li><a href=\"#\">Pinch points</a></li><li><a href=\"#\">Potential falls / ladder use</a></li><li><a href=\"#\">PPE</a></li><li><a href=\"#\">Proper storage / potential of falling objects</a></li><li><a href=\"#\">Safe Operating Procedures (SOP) in place</a></li><li><a href=\"#\">Other...</a></li></ul></div></div>";
+        row.insertCell(1).innerHTML = "<input type='checkbox' style='margin-left:30px'>";
+        row.insertCell(2).innerHTML = "<input type='checkbox' style='margin-left:30px;margin-right:35px' onclick=\"var x = document.getElementById('thCorrectiveAction1'); if (x.style.display == 'none') ToggleDisable('thCorrectiveAction2'); ToggleDisable('txtCorrectiveActionX');\" />";
+        row.insertCell(3).innerHTML = "<input id='txtCorrectiveActionX' type='text' class='form-control' style='display:none' />";
+        row.insertCell(4).innerHTML = "<input type='button' class='form-control' value='&bull;&bull;&bull;' onclick=\"ToggleDisable('txtCommentX');\" style='margin-left:15px;width:auto;margin-right:15px' />";
+        row.insertCell(5).innerHTML = "<input id='txtCommentX' type='text' class='form-control' style='display:none;margin-left:15px' />";
+
+        row = table.insertRow(rowCount + 1);
+
+        row.insertCell(0).innerHTML = "&nbsp;";
+
+    }
+    //Bootstrap3DatePicker
+    $(function () {
+        $('#datetimepicker4').datetimepicker({
+            format: 'MM/DD/YYYY'
+        });
+    });
+</script>
+<br />
+<h2>New Inspection</h2>
+<br />
+<form id="frmNewInspection" action="/InspectionPages/ViewInspection">
+    <div id="setup" style="padding:5px 0px 10px 25px;background-color:#ddd;border-radius: 4px">
+        <div id="date">
+            <h3 style="margin-right:15px;display:inline-block">Date:</h3><p style="font-weight:bolder;font-size:larger;display:inline-block">February 10, 2017</p>
+        </div>
+        <div id="lab">
+            <h3 style="display:inline-block;margin-right:25px">Lab:</h3><p style="font-weight:bolder;font-size:larger;display:inline-block">TC14 (School of Trades)</p>
+        </div>
+    </div>
+    <br />
+    <div id="equipment1">
+        <h3 style="display:inline-block;margin-right:15px">Equipment/Area:</h3>
+        <div id="ddlEquipment1" class="dropdown" style="display:inline-block">
+            <button id="btnEquipment1" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:#ddd;color:black;border:none;font-size:large">
+                Select equipment/area...
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#">Front Area</a></li>
+                <li><a href="#">Back Area</a></li>
+                <li><a href="#">Floor</a></li>
+                <li><a href="#">Back Office</a></li>
+                <li><a href="#">Cabinets</a></li>
+                <li><a href="#">Other...</a></li>
+            </ul>
+        </div>
+        <input type="text" id="txtTest" style="display:none;margin-left:15px;width:250px" class="form-control" />
+    </div>
+    <div id="chkHazards1" style="border:1px solid #ddd;margin-top:30px;padding:0px 0px 30px 30px">
+        <h3><input id="expand1" type="button" value="&#x276F;" onclick="ExpandHazard('hazards1')" class="btn ncBtn" style="margin-right:20px" />Hazards:</h3>
+        <div id="hazards1" style="display:none">
+            <table id="hazardTable1">
+                <tr>
+                    <th style="margin-right:15px"></th>
+                    <th style="padding-left:20px">Good</th>
+                    <th style="padding-left:20px">Fault</th>
+                    <th id="thCorrectiveAction1" style="display:none">Corrective Action</th>
+                    <th id="thCorrectiveAction2" style="display:none">Corrective Action</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <div id="ddlHazards1" class="dropdown" style="display:inline-block">
+                                <button id="btnHazards1" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:#ddd;color:black;border:none;font-size:medium">
+                                    Select a hazard...
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Chemical storage</a></li>
+                                    <li><a href="#">Electrical hazards; frayed cords, improper wiring or grounding</a></li>
+                                    <li><a href="#">Exhaust of dust,fumes</a></li>
+                                    <li><a href="#">Eyewash Station</a></li>
+                                    <li><a href="#">First Aid Kit</a></li>
+                                    <li><a href="#">Flammable storage</a></li>
+                                    <li><a href="#">Guarding</a></li>
+                                    <li><a href="#">Housekeeping - possible trips / slips / spills</a></li>
+                                    <li><a href="#">Housekeeping - area neat and tidy</a></li>
+                                    <li><a href="#">Lock out / tag out</a></li>
+                                    <li><a href="#">MSDS Binder</a></li>
+                                    <li><a href="#">Pinch points</a></li>
+                                    <li><a href="#">Potential falls / ladder use</a></li>
+                                    <li><a href="#">PPE</a></li>
+                                    <li><a href="#">Proper storage / potential of falling objects</a></li>
+                                    <li><a href="#">Safe Operating Procedures (SOP) in place</a></li>
+                                    <li><a href="#">Other...</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                    <td><input type="checkbox" style="margin-left:30px"></td>
+                    <td><input type="checkbox" style="margin-left:30px;margin-right:35px" onclick="var x = document.getElementById('thCorrectiveAction2'); if (x.style.display == 'none') ToggleDisable('thCorrectiveAction1'); ToggleDisable('txtCorrectiveAction1'); ToggleDisable('txtDatePicker');" /></td>
+                    <td>
+                        <input id="txtCorrectiveAction1" type="text" class="form-control" style="display:none"/>
+                    </td>
+                    <td id="txtDatePicker" style="display:none">
+                        <div class="row">
+                            <div style="position: relative;margin-right:15px;width:250px">
+                                <input type='text' class="form-control" id='datetimepicker4' style="background-color:#eee;height:40px;width:280px" placeholder="Select a due date..." />
+                            </div>
+                        </div>
+                    </td>
+                    <td><input type="button" class="form-control" value="&bull;&bull;&bull;" onclick="ToggleDisable('txtComment1');" style="margin-left:15px;width:auto;margin-right:15px" /></td>
+                    <td><input id="txtComment1" type="text" class="form-control" style="display:none;margin-left:15px" /></td>
+                </tr>
+                <tr><td>&nbsp;</td></tr>
+            </table>
+            <br />
+            <input type="button" class="btn ncBtn" value="+ Hazard" onclick="addRow('hazardTable1');" />
+            <br /><br />
+            <input type="button" id="btnDone" value="Done" class="btn ncBtn" onclick="ExpandHazard('hazards1')" />
+        </div>
+    </div>
+    <br /><br />
+    <div id="equipment2" style="display:none">
+        <h3 style="display:inline-block;margin-right:15px">Equipment/Area:</h3>
+        <div id="ddlEquipment2" class="dropdown" style="display:inline-block">
+            <button id="btnEquipment2" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:#ddd;color:black;border:none;font-size:large">
+                Select equipment/area...
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#">Front Area</a></li>
+                <li><a href="#">Back Area</a></li>
+                <li><a href="#">Floor</a></li>
+                <li><a href="#">Back Office</a></li>
+                <li><a href="#">Cabinets</a></li>
+                <li><a href="#">Other...</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="chkHazards2" style="border:1px solid #ddd;margin-top:30px;padding:0px 0px 30px 30px;display:none">
+        <h3><input id="expand2" type="button" value="&#x276F;" onclick="ExpandHazard('hazards2')" class="btn ncBtn" style="margin-right:20px" />Hazards:</h3>
+        <div id="hazards2" style="display:none" class="hazards">
+            <table id="hazardTable2">
+                <tr>
+                    <th style="margin-right:15px"></th>
+                    <th style="padding-left:20px">Good</th>
+                    <th style="padding-left:20px">Fault</th>
+                    <th id="thCorrectiveAction3" style="display:none">Corrective Action</th>
+                    <th id="thCorrectiveAction4" style="display:none">Corrective Action</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <div id="ddlHazards2" class="dropdown" style="display:inline-block">
+                                <button id="btnHazards2" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:#ddd;color:black;border:none;font-size:medium">
+                                    Select a hazard...
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Chemical storage</a></li>
+                                    <li><a href="#">Electrical hazards; frayed cords, improper wiring or grounding</a></li>
+                                    <li><a href="#">Exhaust of dust,fumes</a></li>
+                                    <li><a href="#">Eyewash Station</a></li>
+                                    <li><a href="#">First Aid Kit</a></li>
+                                    <li><a href="#">Flammable storage</a></li>
+                                    <li><a href="#">Guarding</a></li>
+                                    <li><a href="#">Housekeeping - possible trips / slips / spills</a></li>
+                                    <li><a href="#">Housekeeping - area neat and tidy</a></li>
+                                    <li><a href="#">Lock out / tag out</a></li>
+                                    <li><a href="#">MSDS Binder</a></li>
+                                    <li><a href="#">Pinch points</a></li>
+                                    <li><a href="#">Potential falls / ladder use</a></li>
+                                    <li><a href="#">PPE</a></li>
+                                    <li><a href="#">Proper storage / potential of falling objects</a></li>
+                                    <li><a href="#">Safe Operating Procedures (SOP) in place</a></li>
+                                    <li><a href="#">Other...</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                    <td><input type="checkbox" style="margin-left:30px"></td>
+                    <td><input type="checkbox" style="margin-left:30px;margin-right:35px" onclick="var x = document.getElementById('thCorrectiveAction4');if(x.style.display=='none')ToggleDisable('thCorrectiveAction3'); ToggleDisable('txtCorrectiveAction2');" /></td>
+                    <td>
+                        <input id="txtCorrectiveAction2" type="text" class="form-control" style="display:none" />
+                    </td>
+                    <td><input type="button" class="form-control" value="&bull;&bull;&bull;" onclick="ToggleDisable('txtComment2');" style="margin-left:15px;width:auto;margin-right:15px" /></td>
+                    <td><input id="txtComment2" type="text" class="form-control" style="display:none;margin-left:15px" /></td>
+                </tr>
+                <tr><td>&nbsp;</td></tr>
+            </table>
+            <br />
+            <input type="button" class="btn ncBtn" value="+ Hazard" onclick="addRow('hazardTable2');" />
+            <br /><br />
+            <input type="button" id="btnDone" value="Done" class="btn ncBtn" onclick="ExpandHazard('hazards2')" />
+        </div>
+    </div>
+    <br /><br />
+    <input type="button" value="+ Equipment/Area" class="btn ncBtn" onclick="ToggleDisable('chkHazards2'); ToggleDisable('equipment2');" />
+    <br /><br />
+    <input type="button" class="btn ncBtn" value="Save Draft" onclick="alert('Draft saved.');window.location='/Home/Index'" />
+    <input type="submit" class="btn ncBtn" value="Submit" />
+    <input type="button" class="btn ncBtn" value="Cancel" onclick="if(confirm('Are you sure you want to cancel? Everything not saved will be lost.'))window.location='/Home/Index'" />
+</form>

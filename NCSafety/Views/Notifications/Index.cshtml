@@ -1,0 +1,90 @@
+﻿@model IEnumerable<NCSafety.Models.Item>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Accordion - Default functionality</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+  $( function() {
+    $( ".accordion" ).accordion();
+  } );
+    </script>
+</head>
+<body>
+    <br />
+    <h2>Notifications</h2>
+    <br />
+    <h3>Overdue</h3>
+    <div class="accordion">
+        <h3>Lab V001: Corrective Action</h3>
+        <div>
+            <h4>Inspected on: January 3rd, 2017 </h4>
+            <p>
+                Follwing corrective action(s) are past due:
+                <ul>
+                    <li>Exhaust of Dust</li>
+                </ul>
+            </p>
+        </div>
+        <h3>Lab TC33: Corrective Action</h3>
+        <div>
+            <h4>Inspected on: January 16th, 2017 </h4>
+            <p>
+                Follwing corrective action(s) are past due:
+                <ul>
+                    <li>Gaurding</li>
+                    <li>Ladder misplaced</li>
+                </ul>
+            </p>
+        </div>
+        <h3>Lab TC02: Inspection</h3>
+        <div>
+            <h4>Inspected on: TBA </h4>
+            <p>
+                Inspection is past due.
+            </p>
+        </div>
+    </div>
+
+
+
+    <br/><br/><br/>
+        <h3>Upcoming</h3>
+    <div class="accordion">
+        <h3>Lab TC14A: Inspection</h3>
+        <div>
+            <h4>Inspected on: TBA </h4>
+            <p>
+                Scheduled Inspection: February 6th, 2017 <br />
+                Scheduled Inspector: Joe Staff
+            </p>
+        </div>
+        <h3>Lab L119: Corrective Action</h3>
+        <div>
+            <h4>Inspected on: January 30th </h4>
+            <p>
+                Inspector: Joe Staff<br />
+                Corrective Action(s) Due: February 8th, 2017<br />
+
+                Corrective Action(s):
+                <ul>
+                    <li>Frayed cords</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+
+
+</body>
+</html>
+

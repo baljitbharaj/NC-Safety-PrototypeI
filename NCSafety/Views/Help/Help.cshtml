@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Help";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $( function() {
+        $( "#accordion" ).accordion();
+      } );
+    </script>
+</head>
+<body>
+
+
+    <h2>Frequently Asked Questions</h2>
+    <div id="accordion">
+        <h3>How do you schedule an inspection?</h3>
+        <div>
+            <p>
+                Inspections will be scheduled by the Super Admin through the calendar featured on this web application.
+            </p>
+        </div>
+        <h3>Can I go back and edit an inspection after I have submitted one?</h3>
+        <div>
+            <p>
+                No, unfortunately you cannot go back and edit anything from an inspection you have submitted. Only the Associate Dean can make changes to inspections after submission. If you have any concerns regarding an inspection you have submitted, please contact the Associate Dean of your department.
+            </p>
+        </div>
+        <h3>Will I be reminded of any upcoming inspections?</h3>
+        <div>
+            <p>
+                Yes, when an inspection is scheduled, you will automatically receive an email reminder 7 days prior to the inspection due date.
+            </p>
+        </div>
+        <h3>Contact Administration</h3>
+        <div>
+            <h3>Joanne Fedosov</h3>
+            <p>
+                Project and Operations Manager<br />
+                Media, Trades, and Technology Division <br />
+                <br />
+                300 Woodlawn Road<br />
+                Welland, Ontario L3C 7L3<br />
+                T / 905-735-2211 ext. 7210<br />
+                C / 905-933-5197<br />
+                E / jfedosov@niagaracollege.ca
+            </p>
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+
+@*@foreach (var item in Model)
+{
+    <tr>
+
+        <td>
+
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+}*@

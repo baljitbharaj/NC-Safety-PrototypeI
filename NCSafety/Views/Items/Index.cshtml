@@ -1,0 +1,64 @@
+﻿@model IEnumerable<NCSafety.Models.Item>
+
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<h2>Items</h2>
+<br />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Inspection.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.itemArea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.itemHazComment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.itemCorrActionDt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.itemCorrActionCompleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.itemComment)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inspection.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.itemArea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.itemHazComment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.itemCorrActionDt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.itemCorrActionCompleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.itemComment)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

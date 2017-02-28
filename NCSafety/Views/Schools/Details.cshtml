@@ -1,0 +1,58 @@
+﻿@model NCSafety.Models.School
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>School</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.schName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ascDeanFirst)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ascDeanFirst)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ascDeanLast)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ascDeanLast)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ascDeanEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ascDeanEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ascDeanAssistantEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ascDeanAssistantEmail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
